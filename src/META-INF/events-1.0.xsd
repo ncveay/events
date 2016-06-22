@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.lovezx.io/schema/events"
+xmlns:events="http://www.lovezx.io/schema/events"
+elementFormDefault="qualified">
+	<element name="event">
+		<complexType>
+			<sequence>
+				<element name="source">
+					<complexType>
+						<sequence>
+							<element name="property" maxOccurs="unbounded" minOccurs="0">
+								<complexType>
+									<attribute name="name" type="string"/>
+									<attribute name="value" type="string"/>
+								</complexType>
+							</element>
+						</sequence>
+						<attribute name="class" type="string"/>
+					</complexType>
+				</element>
+			</sequence>
+			<attribute name="id" type="string"/>
+			<attribute name="class" type="string"/>
+			<attribute name="ref" type="string"/>
+			<attribute name="method" type="string"/>
+		</complexType>
+	</element>
+	
+	<element name="listener">
+		<complexType>
+			<sequence>
+				<element name="trigger" maxOccurs="unbounded" minOccurs="1">
+					<complexType>
+						<attribute name="condition" type="string"/>
+						<attribute name="ref" type="string"/>
+					</complexType>
+				</element>
+			</sequence>
+			<attribute name="event" type="string"></attribute>
+		</complexType>
+	</element>
+</schema>
