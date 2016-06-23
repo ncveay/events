@@ -10,7 +10,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import io.lovezx.events.EventDefinition;
-import io.lovezx.events.expression.Expression;
 import io.lovezx.events.expression.ExpressionParser;
 import io.lovezx.events.spring.JavaProxyRegistryBeanPostProcessor;
 
@@ -25,18 +24,18 @@ public class EventsBeanDefinitionParser extends ProcessorSupportBeanDefinitionPa
 		String method = element.getAttribute("method");
 		
 		//事件属性
-		Map<String, String> properties = new HashMap<String, String>();
 		Element source = (Element)element.getElementsByTagNameNS("http://www.lovezx.io/schema/events", "source").item(0);
 		NodeList list = source.getElementsByTagNameNS("http://www.lovezx.io/schema/events", "property");
 		for(int i=0; i<list.getLength(); i++){
 			Element property = (Element)list.item(i);
-			property.getAttribute("name");
-			property.getAttribute("value");
+			String name = property.getAttribute("name");
+			String value = property.getAttribute("value");
+			ed.addProperty(name, value);
 		}
 		//事件触发条件
 		String condition = element.getAttribute("condition");
-		ExpressionParser ep = null;//TODO 
-		ed.setCondition(ep.parse(condition));
+//		ExpressionParser ep = null;//TODO 
+//		ed.setCondition(ep.parse(condition));
 		
 		try {
 			Class<?> eventClass = this.getClass().getClassLoader().loadClass(source.getAttribute("class"));

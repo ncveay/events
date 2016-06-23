@@ -1,6 +1,8 @@
 package io.lovezx.events;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.lovezx.events.expression.Expression;
 
@@ -15,6 +17,16 @@ public class EventDefinition {
 	private String name;
 
 	private Expression condition;
+	
+	private Map<String, String> sourceProperties = new HashMap<>();
+	
+	public void addProperty(String name, String value){
+		sourceProperties.put(name, value);
+	}
+	
+	public Map<String, String> getProperties(){
+		return sourceProperties;
+	}
 	
 	public String getName() {
 		return name;

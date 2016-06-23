@@ -1,7 +1,12 @@
 package io.lovezx.events.expression;
 
 public interface Expression {
-
-	public boolean check(Object reval, Object[] params);
 	
+	Object getValue();
+	
+	Class<?> getValueType();
+	
+	Object getValue(ExpressionContext context);
+	
+	Class<?> getValueType(ExpressionContext context);
 }
